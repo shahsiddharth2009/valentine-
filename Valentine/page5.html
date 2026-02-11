@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Memory Match 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:#fff4f8;
+  position:relative;
+}
+
+/* 🌸 TITLE */
+.header{
+  text-align:center;
+  padding:20px 10px;
+}
+.header h1{
+  font-family:'Baloo 2',cursive;
+  color:#ff6f9c;
+  font-size:36px;
+}
+.header p{
+  color:#ff8fb0;
+  font-size:14px;
+}
+
+/* 🎴 GAME AREA */
+.game-box{
+  max-width:1000px;
+  margin:20px auto;
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 20px 40px rgba(255,120,160,.25);
+  position:relative;
+}
+
+/* Score & Moves */
+.game-info {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:15px;
+  font-weight:500;
+  color:#ff6f9c;
+}
+
+/* Cards Grid */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(6, 1fr);
+  gap:15px;
+  perspective:1000px;
+}
+
+/* Card */
+.card{
+  width:100%;
+  height:100px;
+  cursor:pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+/* Card Faces */
+.card .front,
+.card .back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:14px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  backface-visibility:hidden;
+  font-size:24px;
+  color:white;
+}
+
+/* Front = ? */
+.card .front{
+  background:#ff93b6;
+}
+
+/* Back = actual symbol */
+.card .back{
+  background:#ff6f9c;
+  transform: rotateY(180deg);
+}
+
+/* Flip */
+.card.flip{
+  transform: rotateY(180deg);
+}
+
+/* Game Won Overlay */
+.overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(255, 111, 156, 0.9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:32px;
+  font-weight:bold;
+  border-radius:20px;
+  display:none;
+  z-index:10;
+  flex-direction:column;
+}
+
+.overlay button{
+  margin-top:20px;
+  background:white;
+  color:#ff6f9c;
+  font-size:18px;
+  padding:8px 16px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* 🎵 MINI MUSIC PLAYER */
+.mini-player{
+  position:fixed;
+  top:18px;
+  right:18px;
+  background:#ffeaf2;
+  padding:10px 14px;
+  border-radius:14px;
+  box-shadow:0 10px 25px rgba(255,120,160,.3);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:999;
+}
+
+.song-name{
+  font-size:12px;
+  color:#ff6f9c;
+  max-width:120px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.mini-play{
+  background:#ff6f9c;
+  border:none;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<!-- 🎵 MINI PLAYER -->
+<div class="mini-player">
+  <div class="song-name" id="miniSongName">Janam Janam</div>
+  <button class="mini-play" onclick="toggleMiniPlay()">▶</button>
+</div>
+<audio id="miniAudio"></audio>
+
+<!-- 🌸 HEADER -->
+<div class="header">
+  <h1>Valentine Memory Match</h1>
+  <p>Match the pairs and test your memory 💕</p>
+</div>
+
+<!-- 🎴 GAME AREA -->
+<div class="game-box">
+  <!-- Score & Moves -->
+  <div class="game-info">
+    <div>Moves: <span id="moves">0</span></div>
+    <div>Score: <span id="score">0</span></div>
+  </div>
+
+  <!-- Cards Grid -->
+  <div class="cards">
+    <!-- 24 Cards -->
+    <!-- Each card has front (?) and back (symbol) -->
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+    <div class="card"><div class="front">?</div><div class="back"></div></div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay">
+    🎉 You Won!
+    <div>
+      <button onclick="shuffleCards()">Play Again</button>
+      <button onclick="goNext()">Next</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// 🎵 Music Player
+const miniAudio = document.getElementById("miniAudio");
+const miniSongName = document.getElementById("miniSongName");
+const miniPlayBtn = document.querySelector(".mini-play");
+miniAudio.src = "songs/janam-janam.mp3";
+miniSongName.innerText="Janam Janam";
+function toggleMiniPlay(){
+  if(miniAudio.paused){ miniAudio.play(); miniPlayBtn.innerText="⏸"; }
+  else{ miniAudio.pause(); miniPlayBtn.innerText="▶"; }
+}
+
+// 🎴 Memory Match Game
+const cards = document.querySelectorAll(".card");
+const movesDisplay = document.getElementById("moves");
+const scoreDisplay = document.getElementById("score");
+const overlay = document.getElementById("overlay");
+
+let hasFlippedCard=false;
+let firstCard, secondCard;
+let lockBoard=false;
+let moves=0;
+let score=0;
+
+const cardPairs=[
+  ["MEE💖","You💖"], ["Heart","Heart"], ["Rose","Rose"], ["Gift","Gift"],
+  ["Chocolate","Chocolate"], ["Diamond","Diamond"], ["Star","Star"], ["Moon","Moon"],
+  ["Sun","Sun"], ["Flower","Flower"], ["Candy","Candy"], ["Ring","Ring"]
+];
+
+// Flatten and shuffle
+function shuffleCards(){
+  let cardsArray=[];
+  cardPairs.forEach(pair=>{cardsArray.push(pair[0]);cardsArray.push(pair[1]);});
+  cardsArray.sort(()=>0.5-Math.random());
+  cards.forEach((card,index)=>{
+    card.querySelector(".back").textContent=cardsArray[index];
+    card.classList.remove("flip");
+    card.addEventListener("click",flipCard);
+  });
+  moves=0; score=0;
+  movesDisplay.textContent=moves;
+  scoreDisplay.textContent=score;
+  overlay.style.display="none";
+  hasFlippedCard=false; firstCard=null; secondCard=null; lockBoard=false;
+}
+
+shuffleCards();
+
+// Flip function
+function flipCard(){
+  if(lockBoard) return;
+  if(this===firstCard) return;
+  this.classList.add("flip");
+  if(!hasFlippedCard){ hasFlippedCard=true; firstCard=this; return; }
+  secondCard=this; moves++; movesDisplay.textContent=moves;
+  checkForMatch();
+}
+
+// Check for match
+function checkForMatch(){
+  const f = firstCard.querySelector(".back").textContent;
+  const s = secondCard.querySelector(".back").textContent;
+  let isMatch = cardPairs.some(pair=> pair.includes(f) && pair.includes(s));
+  if(isMatch){
+    score++; scoreDisplay.textContent=score;
+    firstCard.removeEventListener("click",flipCard);
+    secondCard.removeEventListener("click",flipCard);
+    resetBoard();
+  }else{
+    lockBoard=true;
+    setTimeout(()=>{
+      firstCard.classList.remove("flip");
+      secondCard.classList.remove("flip");
+      lockBoard=false; firstCard=null; secondCard=null; hasFlippedCard=false;
+    },1000);
+  }
+  if(score===cardPairs.length){
+    setTimeout(()=>overlay.style.display="flex",500);
+  }
+}
+
+function resetBoard(){
+  [hasFlippedCard,lockBoard]=[false,false];
+  [firstCard,secondCard]=[null,null];
+}
+
+// Go to next page
+function goNext(){
+  window.location.href = "page6.html"; // replace with your page 6 URL
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Why You Matter 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  background:#fff4f8;
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
+}
+
+/* Floating petals */
+.petal{
+  position:fixed;
+  top:-10%;
+  width:16px;
+  opacity:0.7;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{
+    transform:translateY(120vh) rotate(360deg);
+  }
+}
+
+/* Header */
+.header{
+  text-align:center;
+  padding:50px 20px 20px;
+}
+
+.header small{
+  color:#ff9bb5;
+}
+
+.header h1{
+  font-family:'Baloo 2',cursive;
+  font-size:48px;
+  color:#ff6f9c;
+  margin:10px 0;
+}
+
+.header p{
+  color:#777;
+  font-size:14px;
+}
+
+/* Cards Grid */
+.container{
+  max-width:1100px;
+  margin:40px auto 80px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+  padding:0 20px;
+}
+
+/* Card */
+.card{
+  background:#ffeaf2;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(255,120,160,.25);
+  transition:0.4s ease;
+  position:relative;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 25px 50px rgba(255,105,150,.4);
+}
+
+/* Icon circle */
+.icon{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff6f9c,#ff93b6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 20px;
+  font-size:26px;
+  color:white;
+  box-shadow:0 10px 20px rgba(255,105,150,.4);
+}
+
+/* Title */
+.card h2{
+  font-family:'Baloo 2',cursive;
+  color:#ff6f9c;
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+/* Text */
+.card p{
+  font-size:13px;
+  color:#666;
+  line-height:1.6;
+}
+
+/* Bottom line */
+.card::after{
+  content:"";
+  width:40px;
+  height:4px;
+  background:#ff93b6;
+  border-radius:10px;
+  position:absolute;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+}
+/* Next Button */
+.next{
+  text-align:center;
+  margin:20px 0 80px;
+}
+
+.next button{
+  background:linear-gradient(135deg,#ff6f9c,#ff93b6);
+  border:none;
+  padding:14px 40px;
+  border-radius:30px;
+  font-size:15px;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 10px 20px rgba(255,105,150,.4);
+}
+
+.next button:hover{
+  transform:scale(1.08);
+  box-shadow:0 15px 30px rgba(255,105,150,.5);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Petals -->
+<script>
+const petals = ['petal1.png','petal2.png','petal3.png'];
+for(let i=0;i<25;i++){
+  let p=document.createElement("img");
+  p.src=petals[Math.floor(Math.random()*petals.length)];
+  p.className="petal";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=6+Math.random()*6+"s";
+  p.style.width=14+Math.random()*20+"px";
+  document.body.appendChild(p);
+}
+</script>
+
+<div class="header">
+  <small>especially today</small>
+  <h1>Why You Matter</h1>
+  <p>A glimpse into what makes you extraordinary to me 💗</p>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="icon">💞</div>
+    <h2>Genuine Heart</h2>
+    <p>You care in ways that feel real and unforced.</p>
+  </div>
+
+  <div class="card">
+    <div class="icon">🌸</div>
+    <h2>Calm Presence</h2>
+    <p>Being with you feels peaceful and grounding.</p>
+  </div>
+
+  <div class="card">
+    <div class="icon">🤍</div>
+    <h2>Kind Nature</h2>
+    <p>Your kindness shows up naturally, without trying.</p>
+  </div>
+
+  <div class="card">
+    <div class="icon">✨</div>
+    <h2>You Listen</h2>
+    <p>You pay attention, remember things, and it shows.</p>
+  </div>
+
+  <div class="card">
+    <div class="icon">🌙</div>
+    <h2>Soft Strength</h2>
+    <p>Gentle, steady, and emotionally present.</p>
+  </div>
+
+  <div class="card">
+    <div class="icon">🌷</div>
+    <h2>Just You</h2>
+    <p>Authentic, honest, and quietly special.</p>
+  </div>
+
+</div>
+
+<!-- NEXT BUTTON -->
+<div class="next">
+  <button onclick="nextPage()">Next →</button>
+</div>
+<script>
+function nextPage(){
+  window.location.href = "page8.html"; 
+}
+</script>
+
+</body>
+</html>
