@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Songs That Feel Like Valentine’s Day 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  background:#fff4f8;
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
+}
+
+/* 🌸 PETALS */
+.petal{
+  position:fixed;
+  top:-10%;
+  width:16px;
+  opacity:0.8;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{
+    transform:translateY(120vh) rotate(360deg);
+  }
+}
+
+/* HEADER */
+.header{
+  text-align:center;
+  padding:40px 20px 10px;
+}
+.header small{
+  color:#ff9bb5;
+}
+.header h1{
+  font-family:'Baloo 2',cursive;
+  font-size:48px;
+  color:#ff6f9c;
+}
+
+/* SONG LIST */
+.songs{
+  max-width:900px;
+  margin:30px auto;
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+  padding:0 20px;
+}
+
+.song-card{
+  background:#ffeaf2;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 20px 40px rgba(255,120,160,.25);
+  text-align:center;
+  position:relative;
+}
+
+.song-card h2{
+  color:#ff6f9c;
+  font-size:22px;
+}
+
+.song-card p{
+  font-size:13px;
+  color:#ff8fb0;
+  margin-top:6px;
+}
+
+/* CASSETTE BAR */
+.tape{
+  width:100%;
+  height:18px;
+  background:#222;
+  border-radius:10px;
+  margin:18px 0;
+}
+
+/* PLAY BUTTON */
+.play-btn{
+  background:#ff6f9c;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:18px;
+  margin:auto;
+  cursor:pointer;
+}
+
+/* NEXT BUTTON */
+.next{
+  text-align:center;
+  margin:40px 0 60px;
+}
+.next button{
+  background:linear-gradient(135deg,#ff6f9c,#ff93b6);
+  border:none;
+  padding:14px 34px;
+  border-radius:30px;
+  font-size:15px;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+}
+.next button:hover{
+  transform:scale(1.06);
+  box-shadow:0 12px 24px rgba(255,105,150,.4);
+}
+.progress{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ff6f9c,#ff93b6);
+}
+
+.time{
+  display:block;
+  margin-top:6px;
+  font-size:11px;
+  color:#ff7fa5;
+}
+.tape{
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🌸 PETALS -->
+<script>
+const petals=[
+  'petal1.png',
+  'petal2.png',
+  'petal3.png'
+];
+for(let i=0;i<30;i++){
+  let p=document.createElement("img");
+  p.src=petals[Math.floor(Math.random()*petals.length)];
+  p.className="petal";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=6+Math.random()*6+"s";
+  p.style.width=14+Math.random()*20+"px";
+  document.body.appendChild(p);
+}
+</script>
+
+<!-- HEADER -->
+<div class="header">
+  <small>Hope they make you smile</small>
+  <h1>Songs That Feel Like Valentine’s Day</h1>
+</div>
+
+<!-- SONGS -->
+<div class="songs">
+
+  <div class="song-card">
+    <h2>O Mere Dil Ke Chain</h2>
+<p>Soft, classic & full of love 💗</p>
+    <div class="tape" onclick="seekSong(event, 1)">
+  <div class="progress"></div>
+</div>
+<small class="time">0:00 / 0:00</small>
+    <div class="play-btn" onclick="playSong(1, this)">▶</div>
+  </div>
+
+  <div class="song-card" style="background:#e9fff2">
+    <h2>Agar Tum Saath Ho</h2>
+<p>Feelings that stay forever 🌸</p>
+    <div class="tape" onclick="seekSong(event, 2)">
+  <div class="progress"></div>
+</div>
+<small class="time">0:00 / 0:00</small>
+    <div class="play-btn" onclick="playSong(2, this)">▶</div>
+  </div>
+
+  <div class="song-card" style="background:#eef2ff">
+    <h2>Zaalima</h2>
+<p>Love that feels destined 💕</p>
+    <div class="tape" onclick="seekSong(event, 3)">
+  <div class="progress"></div>
+</div>
+<small class="time">0:00 / 0:00</small>
+    <div class="play-btn" onclick="playSong(3, this)">▶</div>
+  </div>
+
+</div>
+
+<!-- NEXT -->
+<div class="next">
+  <button onclick="nextPage()">Continue →</button>
+</div>
+
+<script>
+let currentAudio = null;
+let currentBtn = null;
+let currentProgress = null;
+let currentTimeText = null;
+
+function playSong(num, btn) {
+  const audio = document.getElementById("song" + num);
+  const card = btn.closest(".song-card");
+  const progress = card.querySelector(".progress");
+  const timeText = card.querySelector(".time");
+
+  // stop previous song
+  if (currentAudio && currentAudio !== audio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentBtn.innerText = "▶";
+    currentProgress.style.width = "0%";
+    currentTimeText.innerText = "0:00 / 0:00";
+  }
+
+  // play / pause
+  if (audio.paused) {
+    audio.play();
+    btn.innerText = "⏸";
+    currentAudio = audio;
+    currentBtn = btn;
+    currentProgress = progress;
+    currentTimeText = timeText;
+  } else {
+    audio.pause();
+    btn.innerText = "▶";
+  }
+
+  // progress update
+  audio.ontimeupdate = () => {
+    const percent = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = percent + "%";
+    timeText.innerText =
+      formatTime(audio.currentTime) + " / " + formatTime(audio.duration);
+  };
+
+  // when song ends
+  audio.onended = () => {
+    btn.innerText = "▶";
+    progress.style.width = "0%";
+  };
+}
+function seekSong(event, num) {
+  const audio = document.getElementById("song" + num);
+  if (!audio.duration) return;
+
+  const tape = event.currentTarget;
+  const rect = tape.getBoundingClientRect();
+  const clickX = event.clientX - rect.left;
+
+  audio.currentTime = (clickX / rect.width) * audio.duration;
+
+  if (audio.paused) audio.play();
+}
+function formatTime(sec) {
+  if (isNaN(sec)) return "0:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+function nextPage() {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+  window.location.href = "page5.html";
+}
+</script>
+
+<audio id="song1" src="songs/o-mere-dil-ke-chain.mp3"></audio>
+<audio id="song2" src="songs/agar-tum-saath-ho.mp3"></audio>
+<audio id="song3" src="songs/zaalima.mp3"></audio>
+</body>
+</html>

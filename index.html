@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Valentine Moment 💗</title>
+
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* BACKGROUND */
+body {
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #ffe6ee, #ffd6e5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CONTAINER */
+.loading-container {
+  text-align: center;
+}
+
+/* CHARACTER */
+.loading-container img {
+  width: 140px;
+  max-width: 60vw;
+  animation: run 2s ease-in-out infinite;
+}
+
+/* TITLE */
+h1 {
+  margin-top: 15px;
+  font-size: 26px;
+  color: #ff4d7e;
+  animation: fadeIn 1.5s ease;
+}
+
+/* MESSAGE */
+#message {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #777;
+  min-height: 20px;
+  animation: fadeIn 1.5s ease;
+}
+
+/* PROGRESS BAR */
+.progress {
+  width: 80%;
+  max-width: 300px;
+  height: 7px;
+  background: #ffd1dc;
+  border-radius: 10px;
+  margin: 20px auto 8px;
+  overflow: hidden;
+}
+
+.bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff6f9c, #ff4d7e);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+/* DOTS */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dots span {
+  width: 6px;
+  height: 6px;
+  background: #ff6f9c;
+  border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+
+.dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ANIMATIONS */
+@keyframes run {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  #message {
+    font-size: 13px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="loading-container">
+  <div class="kirby-container">
+  <img src="kirby.gif" alt="Kirby running" class="kirby">
+</div>
+
+  <h1>A Valentine Moment</h1>
+  <p id="message">is being prepared for you...</p>
+
+  <div class="progress">
+    <div class="bar" id="bar"></div>
+  </div>
+
+  <div class="dots">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<script>
+const messages = [
+  "is being prepared for you...",
+  "adding a little magic 💗",
+  "almost ready…",
+  "hope this makes you smile 😊"
+];
+
+let msgIndex = 0;
+let progress = 0;
+
+const bar = document.getElementById("bar");
+const message = document.getElementById("message");
+
+const loader = setInterval(() => {
+  progress += 2;
+
+  if (progress > 100) progress = 100;
+  bar.style.width = progress + "%";
+
+  // change message by progress range (SAFE way)
+  if (progress === 25) {
+    message.textContent = messages[1];
+  }
+  if (progress === 50) {
+    message.textContent = messages[2];
+  }
+  if (progress === 75) {
+    message.textContent = messages[3];
+  }
+
+  if (progress === 100) {
+    clearInterval(loader);
+    setTimeout(() => {
+      window.location.href = "page2.html";
+    }, 1200);
+  }
+}, 400);
+</script>
+
+</body>
+</html>

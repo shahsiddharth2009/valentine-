@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>One Last Valentine Thought 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  background:#fff4f8;
+  font-family:'Poppins',sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative;
+}
+
+/* 🌸 PETALS */
+.petal{
+  position:fixed;
+  top:-10%;
+  width:18px;
+  opacity:.8;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{
+    transform:translateY(120vh) rotate(360deg);
+  }
+}
+
+/* MAIN BOX */
+.container{
+  width:650px;
+  background:#ffc9da;
+  padding:50px 40px;
+  border-radius:25px;
+  box-shadow:0 20px 50px rgba(255,105,150,.25);
+  text-align:center;
+}
+
+.small-top{
+  font-size:13px;
+  color:#ff6f9c;
+  margin-bottom:10px;
+}
+
+.title{
+  font-family:'Baloo 2',cursive;
+  font-size:42px;
+  color:#ff4f8b;
+  margin-bottom:20px;
+}
+
+.icon{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.sub{
+  font-weight:500;
+  color:#ff4f8b;
+  margin-bottom:5px;
+}
+
+.hearts{
+  margin:15px 0 25px;
+  color:#ff4f8b;
+  letter-spacing:6px;
+}
+
+/* WHITE MESSAGE BOX */
+.message-box{
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.05);
+  font-size:14px;
+  line-height:1.9;
+  color:#444;
+}
+
+.always{
+  margin-top:20px;
+  font-family:'Baloo 2',cursive;
+  color:#ff6f9c;
+  font-size:20px;
+}
+.bottom-row{
+  margin-top:25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.see-again{
+  background:linear-gradient(135deg,#ff6f9c,#ff93b6);
+  border:none;
+  padding:10px 20px;
+  border-radius:25px;
+  color:white;
+  font-size:13px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.see-again:hover{
+  transform:scale(1.05);
+  box-shadow:0 10px 20px rgba(255,105,150,.4);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="small-top">the grand finale...</div>
+
+  <div class="title">One Last Valentine Thought</div>
+
+  <div class="icon">💝</div>
+  <div class="sub">Sent With Care</div>
+
+  <div class="hearts">❤️ ❤️ ❤️ ❤️ ❤️ ❤️</div>
+
+  <div class="message-box">
+    Not because everything is perfect.<br>
+    Not because everything is easy.<br><br>
+    But because with you,<br>
+    everything feels real.<br><br>
+    And that’s enough for me.
+  </div>
+
+  <div class="bottom-row">
+  <div class="always">Always 💗</div>
+  <button class="see-again" onclick="restart()">See Again ↻</button>
+</div>
+
+<!-- Petals Script -->
+<script>
+const petals=["petal1.png","petal2.png","petal3.png"];
+for(let i=0;i<25;i++){
+  let p=document.createElement("img");
+  p.src=petals[Math.floor(Math.random()*petals.length)];
+  p.className="petal";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=6+Math.random()*6+"s";
+  p.style.width=14+Math.random()*20+"px";
+  document.body.appendChild(p);
+}
+
+function restart(){
+  window.location.href = "index.html"; 
+}
+
+</script>
+
+</body>
+</html>

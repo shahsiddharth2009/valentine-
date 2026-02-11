@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Some Random Thoughts 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  background:#fff4f8;
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
+  text-align:center;
+}
+
+/* 🌸 PETALS */
+.petal{
+  position:fixed;
+  top:-10%;
+  width:16px;
+  opacity:0.8;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{
+    transform:translateY(120vh) rotate(360deg);
+  }
+}
+
+/* HEADER */
+.header{
+  margin-top:50px;
+}
+
+.header small{
+  color:#ff9bb5;
+}
+
+.header h1{
+  font-family:'Baloo 2',cursive;
+  font-size:48px;
+  color:#ff6f9c;
+  margin-top:10px;
+}
+
+/* POLAROIDS */
+.gallery{
+  margin-top:60px;
+  display:flex;
+  justify-content:center;
+  gap:50px;
+  flex-wrap:wrap;
+  padding:20px;
+}
+
+.polaroid{
+  width:250px;
+  background:white;
+  padding:15px;
+  box-shadow:0 20px 40px rgba(255,120,160,.25);
+  border-radius:8px;
+  transition:0.4s;
+}
+
+.polaroid img{
+  width:100%;
+  border-radius:6px;
+}
+
+.polaroid p{
+  margin-top:15px;
+  font-size:14px;
+  color:#555;
+}
+
+/* RANDOM TILT */
+.polaroid:nth-child(1){
+  transform:rotate(-8deg);
+}
+.polaroid:nth-child(2){
+  transform:rotate(5deg);
+}
+.polaroid:nth-child(3){
+  transform:rotate(-5deg);
+}
+
+.polaroid:hover{
+  transform:scale(1.05) rotate(0deg);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .header h1{
+    font-size:34px;
+  }
+  .gallery{
+    gap:30px;
+  }
+}
+.next-section{
+  text-align:center;
+  margin-top:40px;
+}
+
+.next-section button{
+  background: linear-gradient(135deg,#ff6f9c,#ff93b6);
+  border:none;
+  padding:14px 40px;
+  border-radius:30px;
+  font-size:16px;
+  color:white;
+  cursor:pointer;
+  transition:0.3s ease;
+  box-shadow:0 10px 25px rgba(255,105,150,0.4);
+}
+
+.next-section button:hover{
+  transform:scale(1.08);
+  box-shadow:0 15px 30px rgba(255,105,150,0.6);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🌸 PETALS -->
+<script>
+const petals=['petal1.png','petal2.png','petal3.png'];
+for(let i=0;i<25;i++){
+  let p=document.createElement("img");
+  p.src=petals[Math.floor(Math.random()*petals.length)];
+  p.className="petal";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=6+Math.random()*6+"s";
+  p.style.width=14+Math.random()*20+"px";
+  document.body.appendChild(p);
+}
+</script>
+
+<!-- HEADER -->
+<div class="header">
+  <small>the kind that matter</small>
+  <h1>Some random thoughts</h1>
+  <p style="color:#ff8fb0;margin-top:10px;">Simple thoughts, genuine feelings 💗</p>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery">
+
+  <div class="polaroid">
+    <img src="pic1.png">
+    <p>Us? 🥺</p>
+  </div>
+
+  <div class="polaroid">
+    <img src="pic2.png">
+    <p>See I brought you flowers 💕</p>
+  </div>
+
+  <div class="polaroid">
+    <img src="pic3.png">
+    <p>Some extra flowers & a surprise gift 🎁</p>
+  </div>
+
+</div>
+
+<div class="next-section">
+  <button onclick="goNext()">Next 💕</button>
+</div>
+
+<script>
+function goNext(){
+  window.location.href = "page7.html"; 
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+.animate-text {
+  display: block;
+  color: #ff85a8;
+  font-size: 12px;
+  margin-top: 6px;
+  opacity: 0;
+  animation: fadeInText 5s ease forwards; /* ⏳ SLOW HERE */
+  animation-delay: 2.5s; /* waits before starting */
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  background: #fff4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+.card {
+  margin: 40px auto 0;
+  background: #ffd6e4;
+  width: 520px;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(255, 120, 160, 0.25);
+  position: relative;
+
+  overflow: visible;   /* ⭐ THIS IS THE KEY */
+  z-index: 1;
+}
+
+.dog {
+  position: absolute;
+  top: 140px;
+  right: 120px;
+  width: 90px;
+  z-index: 5;
+}
+
+.bunny {
+  position: absolute;
+  bottom: 40px;
+  left: 120px;
+  width: 80px;
+  z-index: 5;   /* ⭐ image on top */
+}
+
+@keyframes jump {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(12deg); }
+  100% { transform: rotate(0deg); }
+}
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+/* PETALS CONTAINER */
+.petals {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* SINGLE PETAL */
+.petal {
+  position: absolute;
+  top: -10%;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* FALLING ANIMATION */
+@keyframes fall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(50vh) translateX(30px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(110vh) translateX(-30px) rotate(360deg);
+  }
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>One Last Valentine Thought 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#fff0f5,#ffe6f0);
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+}
+
+/* Falling petals */
+.petal{
+  position:fixed;
+  top:-10%;
+  width:15px;
+  opacity:.7;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{ transform:translateY(120vh) rotate(360deg); }
+}
+
+/* Header */
+.header{
+  text-align:center;
+  padding:60px 20px 20px;
+}
+
+.header small{
+  color:#ff9bb5;
+}
+
+.header h1{
+  font-family:'Baloo 2',cursive;
+  font-size:48px;
+  color:#ff6f9c;
+}
+
+/* Card */
+.letter-box{
+  max-width:750px;
+  margin:30px auto;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(12px);
+  padding:40px;
+  border-radius:25px;
+  box-shadow:0 25px 60px rgba(255,120,160,.3);
+  animation:fadeUp 1.2s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.letter-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#ff6f9c;
+  font-weight:600;
+  margin-bottom:20px;
+}
+
+.letter-content{
+  background:#fff;
+  padding:25px;
+  border-radius:15px;
+  line-height:1.8;
+  font-size:15px;
+  color:#555;
+  min-height:120px;
+}
+
+/* Buttons */
+.actions{
+  margin-top:30px;
+  text-align:right;
+}
+
+button{
+  border:none;
+  padding:12px 28px;
+  border-radius:25px;
+  cursor:pointer;
+  font-size:14px;
+  margin-left:10px;
+  transition:.3s;
+}
+
+.seal{
+  background:linear-gradient(135deg,#ff6f9c,#ff93b6);
+  color:white;
+  box-shadow:0 10px 25px rgba(255,105,150,.4);
+}
+
+.seal:hover{
+  transform:scale(1.08);
+}
+
+.restart{
+  background:#f2d7e6;
+  color:#555;
+}
+
+.restart:hover{
+  background:#eac3da;
+}
+</style>
+</head>
+<body>
+
+<script>
+/* Petals */
+const petals=['petal1.png','petal2.png','petal3.png'];
+for(let i=0;i<25;i++){
+  let p=document.createElement("img");
+  p.src=petals[Math.floor(Math.random()*petals.length)];
+  p.className="petal";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=6+Math.random()*6+"s";
+  p.style.width=12+Math.random()*18+"px";
+  document.body.appendChild(p);
+}
+</script>
+
+<div class="header">
+  <small>the grand finale...</small>
+  <h1>One Last Valentine Thought</h1>
+</div>
+
+<div class="letter-box">
+  <div class="letter-title">
+    💌 Final Love Letter
+  </div>
+
+  <div class="letter-content" id="letter">
+    Hey,<br><br>
+    This wasn’t about perfection — just honesty.<br>
+    I wanted you to feel appreciated today.<br><br>
+    Whatever comes next,<br>
+    I’m glad this moment exists. 💗
+  </div>
+
+  <div class="actions">
+    <button class="seal" onclick="sealIt()">Seal It 💖</button>
+  </div>
+</div>
+
+<script>
+function sealIt(){
+  document.body.style.opacity = "0";
+  document.body.style.transition = "0.6s";
+  
+  setTimeout(() => {
+    window.location.href = "page9.html";
+  }, 600);
+}
+
+function restart(){
+  window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>

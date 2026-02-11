@@ -1,0 +1,41 @@
+.kirby-container {
+  position: fixed;
+  bottom: 40px;
+  left: -120px;
+  width: 120px;
+  z-index: 10;
+}
+
+.kirby {
+  width: 100px;
+  animation: runAcross 12s linear infinite;
+}
+
+@keyframes runAcross {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(110vw);
+  }
+}
+.card-line {
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #ff9bb5, #ff6f9c);
+  border-radius: 10px;
+  margin: 14px auto 18px;
+  animation: drawCardLine 1.6s ease forwards;
+  animation-delay: 1.2s;
+}
+
+@keyframes drawCardLine {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 140px;
+    opacity: 1;
+  }
+}
