@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Valentine Note 💌</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
@@ -131,6 +132,50 @@ h1 {
   color: white;
   cursor: pointer;
   font-size: 14px;
+}
+/* 📱 MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+
+  body {
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .main-box {
+    width: 92%;
+    padding: 25px 18px;
+    margin-top: 30px;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .envelope {
+    width: 180px;
+    height: 120px;
+  }
+
+  .heart {
+    top: 45px;
+    font-size: 22px;
+  }
+
+  .note-card {
+    padding: 20px;
+  }
+
+  .note-body {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .keep-btn {
+    padding: 10px 22px;
+    font-size: 13px;
+  }
+
 }
 </style>
 </head>
